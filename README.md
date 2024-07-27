@@ -16,3 +16,15 @@ def is_prime(num):
 for num in range(a, b + 1):
     if not is_prime(num):
         print(num)
+
+### 2. Program to Print the First N Fibonacci Numbers
+
+```python
+n = int(input("Enter the number of Fibonacci series terms: "))
+a = 0
+b = 1
+for i in range(n):
+    print(a)
+    c = a + b
+    a = b
+    b = c
