@@ -54,7 +54,7 @@ else:
 	print(f"Roots are real and same\nRoot : {root:.2f}")
 ```
 
-###4. program to check weather a given number is perfect or not (sum of factors = num).
+### 4. program to check weather a given number is perfect or not (sum of factors = num).
 
 ```python
 
@@ -72,7 +72,12 @@ if is_perfect(num):
 else:
     print(f"Number {num} is not perfect")
 
-5. program to display armstrong number up-to 1000.
+```
+
+### 5. program to display armstrong number up-to 1000.
+
+```python
+
 for num in range(1, 1001):
     sum = 0
     temp = num
