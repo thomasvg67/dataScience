@@ -134,9 +134,6 @@ else:
 
 ```python
 
-print("SJC23MCA-2058 : THOMAS V.G")
-print("Batch : MCA 2023-25")
-
 import numpy as np
 
 arr = np.array([
@@ -156,5 +153,56 @@ arr = np.array([
 
 print("3D Array")
 print(arr)
+
+```
+### 2. Create a 2 dimensional array (2X3) with elements belonging to complex data type and print it. Also display
+a. the no: of rows and columns
+b. dimension of an array
+c. reshape the same array to 3X2
+
+```python
+
+import numpy as np
+
+arr2d = np.array([
+	[1 + 2j, 3 + 4j, 5 + 6j],
+	[7 + 8j, 9 + 10j, 11 + 12j]
+],dtype=complex)
+
+print("2D Complex Array:")
+print(arr2d)
+
+rows, cols= arr2d.shape
+print("\nNumber of rows:",rows)
+print("Number of columns:",cols)
+
+print("\nDimension of the Array:",arr2d.ndim)
+
+reshaped_array = arr2d.reshape((3,2))
+print("\nReshaped Array (3x2):")
+print(reshaped_array)
+
+```
+
+### 3. Familiarize with the functions to create
+a. an uninitialized array
+b. array with all elements as 1,
+c. all elements as 0
+
+```python
+
+import numpy as np
+
+uninitialized_array = np.empty(shape=(2,3))
+print("Uninitialized Array:")
+print(uninitialized_array)
+
+ones_array = np.ones((2,3))
+print("\nArray with all elements as 1:")
+print(ones_array)
+
+zeros_array = np.zeros((2,3))
+print("\nArray with all elements as 0:")
+print(zeros_array)
 
 ```
