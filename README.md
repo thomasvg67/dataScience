@@ -157,8 +157,8 @@ print(arr)
 ```
 ### 2. Create a 2 dimensional array (2X3) with elements belonging to complex data type and print it. Also display
 a. the no: of rows and columns <br>
-b. dimension of an array
-c. reshape the same array to 3X2
+b. dimension of an array  <br>
+c. reshape the same array to 3X2  <br>
 
 ```python
 
@@ -185,9 +185,9 @@ print(reshaped_array)
 ```
 
 ### 3. Familiarize with the functions to create
-a. an uninitialized array
-b. array with all elements as 1,
-c. all elements as 0
+a. an uninitialized array <br>
+b. array with all elements as 1, <br>
+c. all elements as 0 <br>
 
 ```python
 
@@ -209,9 +209,9 @@ print(zeros_array)
 
 ### 4. Create an one dimensional array using arange function containing 10 elements.
 Display
-a. First 4 elements
-b. Last 6 elements
-c. Elements from index 2 to 7
+a. First 4 elements <br>
+b. Last 6 elements <br>
+c. Elements from index 2 to 7 <br>
 
 ```python
 
@@ -228,10 +228,10 @@ print("c. Elements from index 2 to 7:", elements_2_to_7)
 ```
 
 ### 5. Create an 1D array with arrange containing first 15 even numbers as elements
-a. Elements from index 2 to 8 with step 2(also demonstrate the same using slice function)
-b. Last 3 elements of the array using negative index
-c. Alternate elements of the array
-d. Display the last 3 alternate elements
+a. Elements from index 2 to 8 with step 2(also demonstrate the same using slice function) <br>
+b. Last 3 elements of the array using negative index <br>
+c. Alternate elements of the array <br>
+d. Display the last 3 alternate elements <br>
 
 ```python
 
@@ -251,12 +251,12 @@ print("Last 3 alternate elements:", last_3_alternate_elements)
 ```
 
 ### 6. Create a 2 Dimensional array with 4 rows and 4 columns.
-a. Display all elements excluding the first row
-b. Display all elements excluding the last column
-c. Display the elements of 1 st and 2 nd column in 2 nd and 3 rd row
-d. Display the elements of 2 nd and 3 rd column
-e. Display 2 nd and 3 rd element of 1 st row
-f. Display the elements from indices 4 to 10 in descending order(use –values)
+a. Display all elements excluding the first row <br>
+b. Display all elements excluding the last column <br>
+c. Display the elements of 1 st and 2 nd column in 2 nd and 3 rd row <br>
+d. Display the elements of 2 nd and 3 rd column <br>
+e. Display 2 nd and 3 rd element of 1 st row <br>
+f. Display the elements from indices 4 to 10 in descending order(use –values) <br>
 
 ```python
 
@@ -285,13 +285,13 @@ descending_order)
 ```
 
 ### 7. Create two 2D arrays using array object and
-a. Add the 2 matrices and print it
-b. Subtract 2 matrices
-c. Multiply the individual elements of matrix
-d. Divide the elements of the matrices
-e. Perform matrix multiplication
-f. Display transpose of the matrix
-g. Sum of diagonal elements of a matrix
+a. Add the 2 matrices and print it <br>
+b. Subtract 2 matrices <br>
+c. Multiply the individual elements of matrix <br>
+d. Divide the elements of the matrices <br>
+e. Perform matrix multiplication <br>
+f. Display transpose of the matrix <br>
+g. Sum of diagonal elements of a matrix <br>
 
 ```python
 
@@ -368,11 +368,11 @@ print(diagonal_elements_non_square)
 ```
 
 ### 10.Create a square matrix with random integer values(use randint()) and use appropriate functions to find:
-i. Inverse
-ii. rank of matrix
-iii. Determinant
-iv. transform matrix into 1D array
-v. eigen values and vectors
+i. Inverse <br>
+ii. rank of matrix <br>
+iii. Determinant <br>
+iv. transform matrix into 1D array <br>
+v. eigen values and vectors <br>
 
 ```python
 
@@ -404,10 +404,9 @@ print(eigenvectors)
 
 ### 11. Create a matrix X with suitable rows and columns
 
-i. Display the cube of each element of the matrix using different
-methods(use multiply(), *, power(),**)
-ii. Display identity matrix of the given square matrix.
-iii. Display each element of the matrix to different powers.
+i. Display the cube of each element of the matrix using different methods(use multiply(), *, power(),**) <br>
+ii. Display identity matrix of the given square matrix. <br>
+iii. Display each element of the matrix to different powers. <br>
 
 ```python
 
