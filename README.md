@@ -156,7 +156,7 @@ print(arr)
 
 ```
 ### 2. Create a 2 dimensional array (2X3) with elements belonging to complex data type and print it. Also display
-a. the no: of rows and columns
+a. the no: of rows and columns <br>
 b. dimension of an array
 c. reshape the same array to 3X2
 
