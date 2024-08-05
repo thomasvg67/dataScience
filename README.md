@@ -206,3 +206,255 @@ print("\nArray with all elements as 0:")
 print(zeros_array)
 
 ```
+
+### 4. Create an one dimensional array using arange function containing 10 elements.
+Display
+a. First 4 elements
+b. Last 6 elements
+c. Elements from index 2 to 7
+
+```python
+
+import numpy as np
+one_dimensional_array = np.arange(10)
+first_4_elements = one_dimensional_array[:4]
+last_6_elements = one_dimensional_array[-6:]
+elements_2_to_7 = one_dimensional_array[2:8]
+print("Original Array:", one_dimensional_array)
+print("a. First 4 elements:", first_4_elements)
+print("b. Last 6 elements:", last_6_elements)
+print("c. Elements from index 2 to 7:", elements_2_to_7)
+
+```
+
+### 5. Create an 1D array with arrange containing first 15 even numbers as elements
+a. Elements from index 2 to 8 with step 2(also demonstrate the same using slice function)
+b. Last 3 elements of the array using negative index
+c. Alternate elements of the array
+d. Display the last 3 alternate elements
+
+```python
+
+import numpy as np
+even_numbers = np.arange(2, 31, 2)
+slice_result = even_numbers[2:9:2]
+last_3_elements = even_numbers[-3:]
+alternate_elements = even_numbers[::2]
+last_3_alternate_elements = alternate_elements[-3:]
+print("Original array:", even_numbers)
+print("Elements from index 2 to 8 with step 2:", slice_result)
+print("Last 3 elements of the array using negative index:",
+last_3_elements)
+print("Alternate elements of the array:", alternate_elements)
+print("Last 3 alternate elements:", last_3_alternate_elements)
+
+```
+
+### 6. Create a 2 Dimensional array with 4 rows and 4 columns.
+a. Display all elements excluding the first row
+b. Display all elements excluding the last column
+c. Display the elements of 1 st and 2 nd column in 2 nd and 3 rd row
+d. Display the elements of 2 nd and 3 rd column
+e. Display 2 nd and 3 rd element of 1 st row
+f. Display the elements from indices 4 to 10 in descending order(use –values)
+
+```python
+
+import numpy as np
+two_dimensional_array = np.array([[1, 2, 3, 4],
+[5, 6, 7, 8],
+[9, 10, 11, 12],
+[13, 14, 15, 16]])
+excluding_first_row = two_dimensional_array[1:]
+excluding_last_column = two_dimensional_array[:, :-1]
+column_1_2_in_row_2_3 = two_dimensional_array[1:3, 0:2]
+column_2_3 = two_dimensional_array[:, 1:3]
+elements_2_3_in_first_row = two_dimensional_array[0, 1:3]
+descending_order = two_dimensional_array.ravel()[::-1][4:11]
+print("Original 2D array:\n", two_dimensional_array)
+print("Elements excluding the first row:\n", excluding_first_row)
+print("Elements excluding the last column:\n", excluding_last_column)
+print("Elements of the 1st and 2nd column in the 2nd and 3rd row:\n",
+column_1_2_in_row_2_3)
+print("Elements of the 2nd and 3rd column:\n", column_2_3)
+print("2nd and 3rd element of the 1st row:\n",
+elements_2_3_in_first_row)
+print("Elements from indices 4 to 10 in descending order:\n",
+descending_order)
+
+```
+
+### 7. Create two 2D arrays using array object and
+a. Add the 2 matrices and print it
+b. Subtract 2 matrices
+c. Multiply the individual elements of matrix
+d. Divide the elements of the matrices
+e. Perform matrix multiplication
+f. Display transpose of the matrix
+g. Sum of diagonal elements of a matrix
+
+```python
+
+import numpy as np
+matrix1 = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+matrix2 = np.array([[9, 8, 7], [6, 5, 4], [3, 2, 1]])
+matrix_sum = matrix1 + matrix2
+matrix_diff = matrix1 - matrix2
+matrix_product = matrix1 * matrix2
+matrix_divide = matrix1 / matrix2
+matrix_multiply = np.dot(matrix1, matrix2)
+matrix1_transpose = np.transpose(matrix1)
+diagonal_sum = np.trace(matrix1)
+print("Matrix 1:\n", matrix1)
+print("Matrix 2:\n", matrix2)
+print("Matrix Sum:\n", matrix_sum)
+print("Matrix Difference:\n", matrix_diff)
+print("Matrix Element-wise Product:\n", matrix_product)
+print("Matrix Element-wise Division:\n", matrix_divide)
+print("Matrix Multiplication:\n", matrix_multiply)
+print("Transpose of Matrix 1:\n", matrix1_transpose)
+print("Sum of Diagonal Elements of Matrix 1:", diagonal_sum)
+
+```
+
+### 8. Demonstrate the use of insert() function in 1D and 2D array
+
+```python
+
+import numpy as np
+array_1d = np.array([1, 2, 3, 4, 5])
+print("1D Array before insertion:")
+print(array_1d)
+array_1d = np.insert(array_1d, 2, 6)
+print("1D Array after insertion:")
+print(array_1d)
+array_2d = np.array([[1, 2, 3],
+[4, 5, 6]])
+print("Original 2D Array:")
+print(array_2d)
+array_2d = np.insert(array_2d, 1, [7, 8, 9], axis=0)
+print("2D Array after insertions:")
+print(array_2d)
+
+```
+
+### 9. Demonstrate the use of diag() function in 1D and 2D array.(use both square matrix and matrix with different dimensions)
+
+```python
+import numpy as np;
+arr_id = np.array([1, 2, 3, 4, 5])
+diagonal_matrix = np.diag(arr_id)
+print("1D Array:")
+print(arr_id)
+print("\nDiagonal Matrix:")
+print(diagonal_matrix)
+arr_2d_square = np.array([[1, 2, 3],
+[4, 5, 6],
+[7, 8, 9]])
+diagonal_elements = np.diag(arr_2d_square)
+print("\n2D Square Matrix:")
+print(arr_2d_square)
+print("\nDiagonal Elements:")
+print(diagonal_elements)
+arr_2d_non_square = np.array([[1, 2, 3],
+[4, 5, 6]])
+
+diagonal_elements_non_square = np.diag(arr_2d_non_square)
+print("\n2D Non-Square Matrix:")
+print(arr_2d_non_square)
+print("\nDiagonal Elements (Non-Square):")
+print(diagonal_elements_non_square)
+
+```
+
+### 10.Create a square matrix with random integer values(use randint()) and use appropriate functions to find:
+i. Inverse
+ii. rank of matrix
+iii. Determinant
+iv. transform matrix into 1D array
+v. eigen values and vectors
+
+```python
+
+import numpy as np;
+matrix_size = 3
+matrix = np.random.randint(10,20, size=(matrix_size, matrix_size))
+print("Original Matrix:")
+print(matrix)
+if np.linalg.matrix_rank(matrix) == matrix_size:
+	inverse_matrix = np.linalg.inv(matrix)
+	print("\nInverse Matrix:")
+	print(inverse_matrix)
+else:
+	print("\nThe matrix is not invertible (its rank is less than thesize).")
+rank = np.linalg.matrix_rank(matrix)
+print("\nRank of the Matrix:", rank)
+determinant = np.linalg.det(matrix)
+print("\nDeterminant of the Matrix:", determinant)
+matrix_1d = matrix.flatten()
+print("\nMatrix as 1D Array:")
+print(matrix_1d)
+eigenvalues, eigenvectors = np.linalg.eig(matrix)
+print("\nEigenvalues:")
+print(eigenvalues)
+print("\nEigenvectors:")
+print(eigenvectors)
+
+```
+
+### 11. Create a matrix X with suitable rows and columns
+
+i. Display the cube of each element of the matrix using different
+methods(use multiply(), *, power(),**)
+ii. Display identity matrix of the given square matrix.
+iii. Display each element of the matrix to different powers.
+
+```python
+
+import numpy as np
+X = np.array([[1, 2,3 ],
+[4, 5, 6],
+[7, 8, 9]])
+
+X_cube_multiply = np.multiply(X, np.multiply(X, X))
+X_cube_operator = X * X * X
+X_cube_power = np.power(X, 3)
+X_cube_double_star = X ** 3
+identity_matrix = np.identity(X.shape[0])
+X_power_2 = np.power(X, 2)
+X_power_3 = np.power(X, 3)
+X_power_4 = np.power(X, 4)
+print("Original Matrix X:")
+print(X)
+print("\nCubed Matrix (Method 1 - multiply()):")
+print(X_cube_multiply)
+print("\nCubed Matrix (Method 2 - * operator):")
+print(X_cube_operator)
+print("\nCubed Matrix (Method 3 - power()):")
+print(X_cube_power)
+print("\nCubed Matrix (Method 4 - ** operator):")
+print(X_cube_double_star)
+print("\nIdentity Matrix:")
+print(identity_matrix)
+print("\nMatrix to Different Powers:")
+print("X^2:")
+print(X_power_2)
+print("\nX^3:")
+print(X_power_3)
+print("\nX^4:")
+print(X_power_4)
+
+```
+
+### 12.Create a matrix Y with same dimension as X and perform the operation X 2 +2Y
+
+```python
+
+import numpy as np;
+X = np.array([[1, 2],
+[3, 4]])
+Y = np.random.rand(*X.shape)
+result = X * 2 + 2 * Y
+print(result)
+
+```
