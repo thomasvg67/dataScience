@@ -457,3 +457,151 @@ result = X * 2 + 2 * Y
 print(result)
 
 ```
+
+### 13.Define matrices A with dimension 5x6 and B with dimension 3x3. Extract a sub matrix of dimension 3x3 from A and multiply it with B. Replace the extracted sub matrix in A with the matrix obtained after multiplication
+
+```python
+
+import numpy as np
+A = np.array([[1,2,3,4,5,6],
+[7,8,9,10,11,12],
+[13,14,15,16,17,18],
+[19,20,21,22,23,24],
+[25,26,27,28,29,30]])
+
+print("Matrix A is : ")
+print(A)
+B = np.array([[1,2,3,],[4,5,6],[7,8,9]])
+print("Matrix B is : ")
+print(B)
+sub_matrix = A[:3, :3]
+print("The sub matrix is ")
+print(sub_matrix)
+result = np.dot(sub_matrix,B)
+print("Matrix after multiplication with the sub matrix of A an d matrix B")
+print(result)
+A[:3, :3] = result
+print("Matrix A after the operation:")
+print(A)
+
+```
+
+### 14.Given 3 Matrices A, B and C. Write a program to perform matrix multiplication of the 3 matrices.
+
+```python
+
+import numpy as np
+A = np.array([[1, 2, 3],
+[4, 5, 6],
+[7, 8, 9]])
+B = np.array([[9, 8, 7],
+[6, 5, 4],
+[3, 2, 1]])
+C = np.array([[10, 5, 9],
+[20, 15, 19],
+[30, 2, 29]])
+result = np.dot(np.dot(A, B), C)
+print("Matrix A:")
+print(A)
+print("Matrix B:")
+print(B)
+print("Matrix C:")
+print(C)
+print("Result of (A * B) * C:")
+print(result)
+
+```
+
+### 15.Write a program to check whether a given matrix is symmetric or Skew Symmetric.
+
+```python
+
+print("SJC23MCA-2058 : THOMAS V.G")
+print("Batch : MCA 2023-25")
+import numpy as np
+def is_symmetric(matrix):
+	return (matrix == matrix.T).all()
+def is_skew_symmetric(matrix):
+	return (matrix == -matrix.T).all()
+matrix = np.array([[0, 1, -2],
+[-1, 0, 3],
+[2, -3, 0]])
+if is_symmetric(matrix):
+	print("The matrix is symmetric.")
+elif is_skew_symmetric(matrix):
+	print("The matrix is skew-symmetric.")
+else:
+	print("The matrix is neither symmetric nor skew-symmetric.")
+
+```
+
+### 16.Given a matrix-vector equation AX=b. Write a program to find out the value of X using solve(), given A and b as below
+
+```python
+
+import numpy as np
+A = np.array([[2, 1,-2],[3,0,1],[1,1,-1]])
+b = np.array([-3,5,-2])
+X = np.linalg.solve(A, b)
+print("Matrix A:")
+print(A)
+print("Vector b:")
+print(b)
+print("Solution for X:")
+print(X)
+
+```
+
+### 17.Write a program to perform the SVD of a given matrix A. Also reconstruct the given matrix from the 3 matrices obtained after performing SVD.
+
+```python
+
+import numpy as np
+A = np.array([[5, 27, 32], [14, 53, 62], [67, 88, 19]])
+U, S, Vt = np.linalg.svd(A)
+A_hat = U @ np.diag(S) @ Vt
+print('Original Matrix A :' )
+print(A)
+print('\nSingular Values : ')
+print(S)
+print('\nReconstructed Matrix A_hat : ')
+print(A_hat)
+
+```
+## Cycle 3
+
+### 1. Sarah bought a new car in 2001 for $24,000. The dollar value of her car changed each year as shown in the table below.
+Value of Sarah's Car<br>
+Year Value<br>
+2001 $24,000<br>
+2002 $22,500<br>
+2003 $19,700<br>
+2004 $17,500<br>
+2005 $14,500<br>
+2006 $10,000<br>
+2007 $ 5,800<br>
+Represent the following information using a line graph with following style properties<br>
+● X- axis - Year<br>
+Y –axis - Car Value<br>
+● title –Value Depreciation (left Aligned)<br>
+● Line Style dash dot and Line-color should be red<br>
+● point using * symbol with green color and size 20<br>
+
+Subplot() provides multiple plots in one figure.
+
+```python
+
+import matplotlib.pyplot as plt
+years = [2001, 2002, 2003, 2004, 2005, 2006, 2007]
+car_values = [24000, 22500, 19700, 17500, 14500, 10000, 5800]
+plt.figure(figsize=(10, 6))
+plt.subplot(111)
+plt.plot(years, car_values, linestyle='-.', color='red', marker='*',
+markersize=20, markerfacecolor='green')
+plt.title("THOMAS V.G \nMCA 2023-25", loc="right")
+plt.title("Value Depreciation", loc="left")
+plt.xlabel("Year")
+plt.ylabel("Car Value")
+plt.savefig('car value graph.png')
+
+```
