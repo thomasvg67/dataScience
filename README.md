@@ -186,7 +186,7 @@ print(reshaped_array)
 
 ### 3. Familiarize with the functions to create
 a. an uninitialized array <br>
-b. array with all elements as 1, <br>
+b. array with all elements as 1 <br>
 c. all elements as 0 <br>
 
 ```python
@@ -595,13 +595,84 @@ import matplotlib.pyplot as plt
 years = [2001, 2002, 2003, 2004, 2005, 2006, 2007]
 car_values = [24000, 22500, 19700, 17500, 14500, 10000, 5800]
 plt.figure(figsize=(10, 6))
-plt.subplot(111)
+plt.subplot(111) # Only one subplot in this example
 plt.plot(years, car_values, linestyle='-.', color='red', marker='*',
 markersize=20, markerfacecolor='green')
 plt.title("THOMAS V.G \nMCA 2023-25", loc="right")
 plt.title("Value Depreciation", loc="left")
 plt.xlabel("Year")
 plt.ylabel("Car Value")
-plt.savefig('car value graph.png')
+plt.show()
 
 ```
+### 2.Following table gives the daily sales of the following items in a shop <br>
+<table>
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Mon</th>
+                <th>Tues</th>
+                <th>Wed</th>
+                <th>Thurs</th>
+                <th>Fri</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Drinks</td>
+                <td>300</td>
+                <td>450</td>
+                <td>150</td>
+                <td>400</td>
+                <td>650</td>
+            </tr>
+            <tr>
+                <td>Food</td>
+                <td>400</td>
+                <td>500</td>
+                <td>350</td>
+                <td>300</td>
+                <td>500</td>
+            </tr>
+        </tbody>
+    </table>
+
+Use subplot function to draw the line graphs with grids(color as blue and line style
+dotted) for the above information as 2 separate graphs in two rows <br>
+a) Properties for the Graph 1:<br>
+● X label- Days of week<br>
+● Y label-Sale of Drinks<br>
+● Title-Sales Data1 (right aligned)<br>
+● Line –dotted with cyan color<br>
+● Points- hexagon shape with color magenta and outline black<br>
+b) Properties for the Graph 2:<br>
+● X label- Days of Week<br>
+● Y label-Sale of Food<br>
+● Title-Sales Data2 ( center aligned)<br>
+● Line –dashed with yellow color<br>
+● Points- diamond shape with color green and outline red<br>
+
+```python
+import matplotlib.pyplot as plt
+days = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri']
+drinks_sales = [300, 450, 150, 400, 650]
+food_sales = [400, 500, 350, 300, 500]
+fig, axs = plt.subplots(2, 1, figsize=(8, 8))
+axs[0].plot(days, drinks_sales, linestyle='--', color='cyan', marker='H',
+markersize=8, markerfacecolor='magenta', markeredgecolor='black')
+axs[0].set_xlabel('Days of Week')
+axs[0].set_ylabel('Sale of Drinks')
+axs[0].set_title('Sales Data1', loc='right')
+axs[0].set_title('THOMAS V.G \nMCA 2023-25', loc='left')
+axs[0].grid(True, color='blue', linestyle='dotted')
+axs[1].plot(days, food_sales, linestyle='-', color='yellow', marker='D',
+markersize=8, markerfacecolor='green', markeredgecolor='red')
+axs[1].set_xlabel('Days of Week')
+axs[1].set_ylabel('Sale of Food')
+axs[1].set_title('Sales Data2', loc='center')
+axs[1].grid(True, color='blue', linestyle='dotted')
+plt.tight_layout()
+plt.show()
+```
+
+### 
