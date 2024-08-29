@@ -596,8 +596,7 @@ years = [2001, 2002, 2003, 2004, 2005, 2006, 2007]
 car_values = [24000, 22500, 19700, 17500, 14500, 10000, 5800]
 plt.figure(figsize=(10, 6))
 plt.subplot(111) # Only one subplot in this example
-plt.plot(years, car_values, linestyle='-.', color='red', marker='*',
-markersize=20, markerfacecolor='green')
+plt.plot(years, car_values, linestyle='-.', color='red', marker='*', markersize=20, markerfacecolor='green')
 plt.title("THOMAS V.G \nMCA 2023-25", loc="right")
 plt.title("Value Depreciation", loc="left")
 plt.xlabel("Year")
@@ -658,15 +657,13 @@ days = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri']
 drinks_sales = [300, 450, 150, 400, 650]
 food_sales = [400, 500, 350, 300, 500]
 fig, axs = plt.subplots(2, 1, figsize=(8, 8))
-axs[0].plot(days, drinks_sales, linestyle='--', color='cyan', marker='H',
-markersize=8, markerfacecolor='magenta', markeredgecolor='black')
+axs[0].plot(days, drinks_sales, linestyle='--', color='cyan', marker='H', markersize=8, markerfacecolor='magenta', markeredgecolor='black')
 axs[0].set_xlabel('Days of Week')
 axs[0].set_ylabel('Sale of Drinks')
 axs[0].set_title('Sales Data1', loc='right')
 axs[0].set_title('THOMAS V.G \nMCA 2023-25', loc='left')
 axs[0].grid(True, color='blue', linestyle='dotted')
-axs[1].plot(days, food_sales, linestyle='-', color='yellow', marker='D',
-markersize=8, markerfacecolor='green', markeredgecolor='red')
+axs[1].plot(days, food_sales, linestyle='-', color='yellow', marker='D', markersize=8, markerfacecolor='green', markeredgecolor='red')
 axs[1].set_xlabel('Days of Week')
 axs[1].set_ylabel('Sale of Food')
 axs[1].set_title('Sales Data2', loc='center')
@@ -843,8 +840,7 @@ plt.show()
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
-x = np.random.normal([61, 63, 64, 66, 68, 69, 71, 71.5, 72, 72.5, 73, 73.5, 74,
-74.5, 76, 76.2, 76.5, 77, 77.5, 78, 78.5, 79, 79.2, 80, 81, 82, 83, 84, 85, 87])
+x = np.random.normal([61, 63, 64, 66, 68, 69, 71, 71.5, 72, 72.5, 73, 73.5, 74, 74.5, 76, 76.2, 76.5, 77, 77.5, 78, 78.5, 79, 79.2, 80, 81, 82, 83, 84, 85, 87])
 plt.hist(x, bins=range(40,110,5), )
 plt.title('Cherry tree heights',loc='left')
 plt.title('THOMAS V.G\nMCA 2023-2025', loc='right')
@@ -862,11 +858,27 @@ iv. No. of samples available for each variety.<br>
 v. Description of the data set( use describe ).<br>
 
 ```python
+import pandas as pd
+df = pd.read_csv('iris.csv')
+print("Shape of the dataset is : ",df.shape)
+print("First 5 and last five rows of data set\n",df)
+print("Size of dataset : ",df.size)
+print("No. of samples available for each variety\n",df.count())
+print("Description of the data set\n",df.describe())
 ```
 
 ### 8. Use the pairplot() function in seaborn to display pairwise relationships between attributes.Try different kind of plots {‘scatter’, ‘kde’, ‘hist’, ‘reg’} and different kind of markers.
 
 ```python
+import pandas as pd
+import seaborn
+import matplotlib.pyplot as plt
+df = pd.read_csv('iris.csv')
+seaborn.pairplot(df, kind='scatter')
+seaborn.pairplot(df, kind='kde')
+seaborn.pairplot(df, kind='hist')
+seaborn.pairplot(df, kind='reg')
+plt.show()
 ```
 
 ### 9. Using the iris data set,get familiarize with functions:
@@ -877,4 +889,17 @@ v. Description of the data set( use describe ).<br>
 
 Note: import pandas and seaborn packages
 ```python
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+iris=pd.read_csv("iris.csv")
+sns.displot(iris['sepal.length'],kde=True,rug=True)
+plt.title("Distribution of Sepal length")
+plt.show()
+sns.histplot(iris['petal.width'],kde=True,bins=20)
+plt.title("Histogram of Petal width")
+plt.show()
+sns.relplot(x="sepal.length",y="sepal.width",data=iris,hue="variety",style="variety")
+plt.title("Sepal Length v/s Sepal Width")
+plt.show()
 ```
