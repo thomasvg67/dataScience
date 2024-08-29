@@ -186,7 +186,7 @@ print(reshaped_array)
 
 ### 3. Familiarize with the functions to create
 a. an uninitialized array <br>
-b. array with all elements as 1, <br>
+b. array with all elements as 1 <br>
 c. all elements as 0 <br>
 
 ```python
@@ -595,13 +595,311 @@ import matplotlib.pyplot as plt
 years = [2001, 2002, 2003, 2004, 2005, 2006, 2007]
 car_values = [24000, 22500, 19700, 17500, 14500, 10000, 5800]
 plt.figure(figsize=(10, 6))
-plt.subplot(111)
-plt.plot(years, car_values, linestyle='-.', color='red', marker='*',
-markersize=20, markerfacecolor='green')
+plt.subplot(111) # Only one subplot in this example
+plt.plot(years, car_values, linestyle='-.', color='red', marker='*', markersize=20, markerfacecolor='green')
 plt.title("THOMAS V.G \nMCA 2023-25", loc="right")
 plt.title("Value Depreciation", loc="left")
 plt.xlabel("Year")
 plt.ylabel("Car Value")
-plt.savefig('car value graph.png')
+plt.show()
 
+```
+### 2.Following table gives the daily sales of the following items in a shop <br>
+<table>
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Mon</th>
+                <th>Tues</th>
+                <th>Wed</th>
+                <th>Thurs</th>
+                <th>Fri</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Drinks</td>
+                <td>300</td>
+                <td>450</td>
+                <td>150</td>
+                <td>400</td>
+                <td>650</td>
+            </tr>
+            <tr>
+                <td>Food</td>
+                <td>400</td>
+                <td>500</td>
+                <td>350</td>
+                <td>300</td>
+                <td>500</td>
+            </tr>
+        </tbody>
+    </table>
+
+Use subplot function to draw the line graphs with grids(color as blue and line style
+dotted) for the above information as 2 separate graphs in two rows <br>
+a) Properties for the Graph 1:<br>
+● X label- Days of week<br>
+● Y label-Sale of Drinks<br>
+● Title-Sales Data1 (right aligned)<br>
+● Line –dotted with cyan color<br>
+● Points- hexagon shape with color magenta and outline black<br>
+b) Properties for the Graph 2:<br>
+● X label- Days of Week<br>
+● Y label-Sale of Food<br>
+● Title-Sales Data2 ( center aligned)<br>
+● Line –dashed with yellow color<br>
+● Points- diamond shape with color green and outline red<br>
+
+```python
+import matplotlib.pyplot as plt
+days = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri']
+drinks_sales = [300, 450, 150, 400, 650]
+food_sales = [400, 500, 350, 300, 500]
+fig, axs = plt.subplots(2, 1, figsize=(8, 8))
+axs[0].plot(days, drinks_sales, linestyle='--', color='cyan', marker='H', markersize=8, markerfacecolor='magenta', markeredgecolor='black')
+axs[0].set_xlabel('Days of Week')
+axs[0].set_ylabel('Sale of Drinks')
+axs[0].set_title('Sales Data1', loc='right')
+axs[0].set_title('THOMAS V.G \nMCA 2023-25', loc='left')
+axs[0].grid(True, color='blue', linestyle='dotted')
+axs[1].plot(days, food_sales, linestyle='-', color='yellow', marker='D', markersize=8, markerfacecolor='green', markeredgecolor='red')
+axs[1].set_xlabel('Days of Week')
+axs[1].set_ylabel('Sale of Food')
+axs[1].set_title('Sales Data2', loc='center')
+axs[1].grid(True, color='blue', linestyle='dotted')
+plt.tight_layout()
+plt.show()
+```
+
+### 3. Create scatter plot for the below data:(use Scatter function)
+<table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Jan</th>
+                <th>Feb</th>
+                <th>Mar</th>
+                <th>Apr</th>
+                <th>May</th>
+                <th>Jun</th>
+                <th>Jul</th>
+                <th>Aug</th>
+                <th>Sep</th>
+		<th>Oct</th>
+                <th>Nov</th>
+                <th>Dec</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Affordable Segment</td>
+                <td>173</td>
+                <td>153</td>
+                <td>195</td>
+                <td>147</td>
+                <td>120</td>
+                <td>144</td>
+                <td>148</td>
+                <td>109</td>
+                <td>174</td>
+                <td>130</td>
+                <td>172</td>
+                <td>131</td> 
+            </tr>
+            <tr>
+                <td>Luxury Segment</td>
+                <td>189</td>
+                <td>189</td>
+                <td>105</td>
+                <td>112</td>
+                <td>173</td>
+                <td>109</td>
+                <td>151</td>
+                <td>197</td>
+                <td>174</td>
+                <td>145</td>
+                <td>177</td>
+                <td>161</td>
+            </tr>
+            <tr>
+                <td>Super Luxury Segment</td>
+                <td>185</td>
+                <td>185</td>
+                <td>126</td>
+                <td>134</td>
+                <td>196</td>
+                <td>153</td>
+                <td>112</td>
+                <td>133</td> 
+                <td>200</td>
+                <td>145</td>
+                <td>167</td>
+                <td>110</td>
+            </tr>
+        </tbody>
+    </table>
+
+Create scatter plot for each Segment with following properties within one graph<br>
+● X Label- Months of Year with font size 18<br>
+● Y-Label- Sales of Segments<br>
+● Title –Sales Data<br>
+● Color for Affordable segment- pink<br>
+● Color for Luxury Segment- Yellow<br>
+● Color for Super luxury segment-blue<br>
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+month =np.array(['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'])
+AS = np.array([173,153,195,147,120,144,148,109,174,130,172,131])
+LS = np.array([189,189,105,112,173,109,151,197,174,145,177,161])
+SLS = np.array([185,185,126,134,196,153,112,133,200,145,167,110])
+plt.xlabel('Months of Year', fontsize=18)
+plt.ylabel('Sales of Segments')
+plt.title('Sales Data')
+plt.title('THOM V.G\nMCA 2023-2025', loc='right')
+plt.scatter(month,AS, label='Affordable Segment', color='pink')
+plt.scatter(month,LS, label='Luxury Segment', color='yellow')
+plt.scatter(month,SLS, label='Super Luxury Segment', color='blue')
+plt.show()
+```
+
+### 4. Display the above data using multiline plot( 3 different lines in same graph)
+● Display the description of the graph in upper right corner(use legend())<br>
+● Use different colors and line styles for 3 different lines<br>
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+month =np.array(['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'])
+AS = np.array([173,153,195,147,120,144,148,109,174,130,172,131])
+LS = np.array([189,189,105,112,173,109,151,197,174,145,177,161])
+SLS = np.array([185,185,126,134,196,153,112,133,200,145,167,110])
+plt.plot(month,AS, label='Affordable', color='pink',linestyle='--')
+plt.plot(month,LS, label='Luxury', color='yellow',linestyle='-.')
+plt.plot(month,SLS, label='Super Luxury', color='blue',linestyle=':')
+plt.xlabel('Months of Year', fontsize=18)
+plt.ylabel('Sales of Segments')
+plt.title('Sales Data')
+plt.title('THOMAS V.G\nMCA 2023-2025', loc='right')
+plt.show()
+```
+
+### 5. 100 students were asked what their primary mode of transport for getting to school was.
+The results of this survey are recorded in the table below. Construct a bar graph representing this information.<br>
+
+<table>
+        <thead>
+            <tr>
+                <th>Mode of Transport</th>
+                <th>Frequency</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Walking</td>
+                <td>29</td>
+            </tr>
+            <tr>
+                <td>Cycling</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td>Car</td>
+                <td>35</td>
+            </tr>
+            <tr>
+                <td>Bus</td>
+                <td>18</td>
+            </tr>
+            <tr>
+                <td>Train</td>
+                <td>3</td>
+            </tr>
+        </tbody>
+    </table>
+
+Create a bar graph with<br>
+● X axis -mode of Transport and Y axis ‘frequency’<br>
+● Provide appropriate labels and title<br>
+● Width .1, color green<br>
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+mode_transport = np.array(['Walking','Cycling','Car','Bus','Train'])
+feq = np.array([29,15,35,18,3])
+plt.xlabel('Mode of Transport')
+plt.ylabel('Frequency')
+plt.title('THOMAS V.G\nMCA 2023-2025', loc='right')
+plt.bar(mode_transport,feq, width=0.1, color='green')
+plt.show()
+```
+### 6. We are provided with the height of 30 cherry trees.The height of the trees (in inches): 61,63, 64, 66, 68, 69, 71, 71.5, 72, 72.5, 73, 73.5, 74, 74.5, 76, 76.2, 76.5, 77, 77.5, 78, 78.5,79, 79.2, 80, 81, 82, 83, 84, 85,87.Create a histogram with a bin size of 5
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+x = np.random.normal([61, 63, 64, 66, 68, 69, 71, 71.5, 72, 72.5, 73, 73.5, 74, 74.5, 76, 76.2, 76.5, 77, 77.5, 78, 78.5, 79, 79.2, 80, 81, 82, 83, 84, 85, 87])
+plt.hist(x, bins=range(40,110,5), )
+plt.title('Cherry tree heights',loc='left')
+plt.title('THOMAS V.G\nMCA 2023-2025', loc='right')
+plt.xlabel('Height (in inches)')
+plt.ylabel('Frequency')
+plt.show()
+```
+
+### 7. Using the pandas function read_csv(), read the given ‘iris’ data set.
+
+i. Display Shape of the data set.<br>
+ii. First 5 and last five rows of data set(head and tail).<br>
+iii. Size of dataset.<br>
+iv. No. of samples available for each variety.<br>
+v. Description of the data set( use describe ).<br>
+
+```python
+import pandas as pd
+df = pd.read_csv('iris.csv')
+print("Shape of the dataset is : ",df.shape)
+print("First 5 and last five rows of data set\n",df)
+print("Size of dataset : ",df.size)
+print("No. of samples available for each variety\n",df.count())
+print("Description of the data set\n",df.describe())
+```
+
+### 8. Use the pairplot() function in seaborn to display pairwise relationships between attributes.Try different kind of plots {‘scatter’, ‘kde’, ‘hist’, ‘reg’} and different kind of markers.
+
+```python
+import pandas as pd
+import seaborn
+import matplotlib.pyplot as plt
+df = pd.read_csv('iris.csv')
+seaborn.pairplot(df, kind='scatter')
+seaborn.pairplot(df, kind='kde')
+seaborn.pairplot(df, kind='hist')
+seaborn.pairplot(df, kind='reg')
+plt.show()
+```
+
+### 9. Using the iris data set,get familiarize with functions:
+
+1) displot()<br>
+2) histplot()<br>
+3) relplot()<br>
+
+Note: import pandas and seaborn packages
+```python
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+iris=pd.read_csv("iris.csv")
+sns.displot(iris['sepal.length'],kde=True,rug=True)
+plt.title("Distribution of Sepal length")
+plt.show()
+sns.histplot(iris['petal.width'],kde=True,bins=20)
+plt.title("Histogram of Petal width")
+plt.show()
+sns.relplot(x="sepal.length",y="sepal.width",data=iris,hue="variety",style="variety")
+plt.title("Sepal Length v/s Sepal Width")
+plt.show()
 ```
