@@ -1127,3 +1127,138 @@ plt.legend(['Train', 'Val'], loc='upper right')
 plt.show()
 ```
 
+## Cycle 5
+
+### 1. Write a program to implement a simple web crawler using Python. Extract and display the content of the page(p tag)
+
+```python
+import requests
+from bs4 import BeautifulSoup
+
+def getdata(url):
+    r = requests.get(url)
+    return r.content
+htmldata = getdata("https://www.toppr.com/guides/essays/globalization-essay/")
+soup = BeautifulSoup(htmldata,'html.parser')
+data = ''
+pr = len(soup.find_all('p'))
+print("<P> tag",pr)
+for data in soup.find_all('p'):
+    print(data.get_text())
+```
+### 2. Write a program to implement a simple web crawler using Python. Display all hyperlinks in the page
+
+```python
+import requests
+from bs4 import BeautifulSoup
+def getdata(url):
+    r = requests.get(url)
+    return r.content
+htmldata = getdata("http://sjcetpalai.ac.in")
+soup = BeautifulSoup(htmldata,'html.parser')
+links = soup.find_all("a")
+print("Total number of links : ",len(links))
+for link in links:
+    if link.get("href") != "":
+        print("link :",link.get("href"),"Text :",link.string)
+```
+
+### 3. Program for Natural Language Processing which performs n-grams(without using library)
+
+```python
+def gen_ngrams(text, wordsToCombine):
+    words = text.split()
+    output = []
+    for i in range(len(words)-wordsToCombine + 1):
+        output.append(words[i:i + wordsToCombine])
+    return output
+x = gen_ngrams(text='Using the iris data set, implement the KNN algorithm', wordsToCombine=3)
+print(x)
+```
+
+### 4. Program for Natural Language Processing which performs n-grams(using nltk library)
+
+```python
+from nltk import ngrams
+sentence = 'I reside in India'
+n = 3
+trigrams = ngrams(sentence.split(),n)
+for grams in trigrams:
+    print(grams)
+```
+
+### 5. For given text,
+● perform word
+● sentence tokenization
+● Remove the stop words from the given text
+● create n-grams
+
+```python
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk import ngrams
+nltk.download('punkt')
+nltk.download('punkt_tab')
+nltk.download('stopwords')
+
+
+from nltk.tokenize import sent_tokenize,word_tokenize
+text1 = 'The data given satisfies the requirement for model generation. This is used in Data Science Lab'
+print('Sentance tokenization : ')
+print(sent_tokenize(text1))
+print("Word tokenization : ")
+print(word_tokenize(text1))
+text = word_tokenize(text1)
+text2 = [word for word in text if word not in stopwords.words('english')]
+print("")
+print("Removing stop words : ")
+print(text2)
+print("")
+print("n grams : ")
+unigrams = ngrams(text2,2)
+for grams in unigrams:
+    print(grams)
+```
+
+### 6. Given dataset contains 200 records and five columns, two of which describe the customer’s annual income and spending score. The latter is a value from 0 to 100. The higher the number, the more this customer has spent with the company
+in the past:
+Using k means clustering creates 6 clusters of customers based on their spending
+pattern.
+● Visualize the same in a scatter plot with each cluster in a different color scheme.
+● Display the cluster labels of each point.(print cluster indexes)
+● Display the cluster centers.
+● Use different values of K and visualize the same using scatter plot
+
+```python
+import pandas as pd
+customer = pd.read_csv('Mall_Customers.csv')
+customer.head()
+import matplotlib.pyplot as plt
+point = customer.iloc[:,3:5].values
+x = point[:,0]
+y = point[:,1]
+plt.scatter(x,y,s=50,alpha=0.7)
+plt.xlabel('Annual income (k$)')
+plt.ylabel('Spending Score')
+plt.show()
+
+from sklearn.cluster import KMeans
+kmeans = KMeans(n_clusters=6,random_state=0)
+kmeans.fit(point)
+predicted_cluster_indexes = kmeans.predict(point)
+plt.scatter(x,y,c=predicted_cluster_indexes,s=50,alpha=0.7,cmap='viridis')
+plt.xlabel('Annual income (k$)')
+plt.ylabel('Spending Score')
+plt.show()
+
+from sklearn.cluster import KMeans
+kmeans = KMeans(n_clusters=7,random_state=0)
+kmeans.fit(point)
+predicted_cluster_indexes = kmeans.predict(point)
+plt.scatter(x,y,c=predicted_cluster_indexes,s=50,alpha=0.7,cmap='viridis')
+plt.xlabel('Annual income (k$)')
+plt.ylabel('Spending Score')
+plt.title('Cluster centers')
+plt.show()
+```
