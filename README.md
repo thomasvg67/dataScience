@@ -903,3 +903,227 @@ sns.relplot(x="sepal.length",y="sepal.width",data=iris,hue="variety",style="vari
 plt.title("Sepal Length v/s Sepal Width")
 plt.show()
 ```
+
+## Cycle 4
+### 1. Using the iris data set, implement the KNN algorithm. Take different values for the Test and training data set .Also use different values for k. Also find the accuracy level.
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import  pandas as pd
+dataset = pd.read_csv("iris.csv")
+x = dataset.iloc[:,:-1].values
+y = dataset.iloc[:,4].values
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.20)
+from sklearn.neighbors import KNeighborsClassifier
+classifier = KNeighborsClassifier(n_neighbors=5)
+classifier.fit(x_train,y_train)
+y_pred=classifier.predict(x_test)
+from sklearn.metrics import classification_report,confusion_matrix
+print(classification_report(y_test,y_pred))
+```
+
+### 2. Download another data set suitable for the KNN and implement the KNN algorithm. Take different values for the Test and training data set .Also use different values for k.
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+dataset = pd.read_csv("Blood Transfusion.csv")
+x = dataset.iloc[:,:-1].values
+y = dataset.iloc[:,4].values
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.20)
+from sklearn.neighbors import KNeighborsClassifier
+classifier = KNeighborsClassifier(n_neighbors=5)
+classifier.fit(x_train,y_train)
+y_pred = classifier.predict(x_test)
+from sklearn.metrics import classification_report,confusion_matrix
+print(classification_report(y_test,y_pred))
+```
+
+### 3. Using iris data set, implement naive bayes classification for different naive Bayes classification algorithms.( (i) gaussian (ii) bernoulli etc)
+
+● Find out the accuracy level w.r.t to each algorithm
+● Display the no:of mislabeled classification from test data set
+● List out the class labels of the mismatching records
+
+I. Gaussian
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+dataset=pd.read_csv('iris.csv')
+x=dataset.iloc[:,:4].values
+y=dataset['variety'].values
+dataset.head(5)
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.3)
+from sklearn.naive_bayes import GaussianNB
+classifier=GaussianNB()
+classifier.fit(x_train,y_train)
+y_pred=classifier.predict(x_test)
+print(y_pred)
+from sklearn.metrics import confusion_matrix
+cm=confusion_matrix(y_test,y_pred)
+print(cm)
+from sklearn.metrics import accuracy_score
+print("Accuracy : ",accuracy_score(y_test,y_pred))
+df=pd.DataFrame({'Real values':y_test,'Predicted values':y_pred})
+print(df)
+```
+
+II. Bernoulli
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+dataset=pd.read_csv('iris.csv')
+x=dataset.iloc[:,:4].values
+y=dataset['variety'].values
+dataset.head(5)
+
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.3)
+from sklearn.naive_bayes import BernoulliNB
+classifier=BernoulliNB()
+classifier.fit(x_train,y_train)
+y_pred=classifier.predict(x_test)
+print(y_pred)
+from sklearn.metrics import confusion_matrix
+cm=confusion_matrix(y_test,y_pred)
+print(cm)
+from sklearn.metrics import accuracy_score
+print("Accuracy : ",accuracy_score(y_test,y_pred))
+df=pd.DataFrame({'Real values':y_test,'Predicted values':y_pred})
+print(df)
+```
+
+### 4. Use car details CSV file and implement decision tree algorithm
+
+● Find out the accuracy level.
+● Display the no: of mislabelled classification from test data set
+● List out the class labels of the mismatching records
+
+```python
+import pandas as pd
+data = pd.read_csv('car.csv')
+print(data.head())
+col_names = ['buying','maint','doors','persons','lug_boot','safety','class']
+data.columns = col_names
+print(col_names)
+data['class'],class_names = pd.factorize(data['class'])
+data['buying'],_ = pd.factorize(data['buying'])
+data['maint'],_ = pd.factorize(data['maint'])
+data['doors'],_ = pd.factorize(data['doors'])
+data['persons'],_ = pd.factorize(data['persons'])
+data['lug_boot'],_ = pd.factorize(data['lug_boot'])
+data['safety'],_ = pd.factorize(data['safety'])
+print(data.head())
+x = data.iloc[:, :-1]
+y = data.iloc[:, -1]
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(x,y,test_size=0.3)
+from sklearn.tree import DecisionTreeClassifier
+tree1 = DecisionTreeClassifier()
+tree1.fit(x_train,y_train)
+y_pred = tree1.predict(x_test)
+
+count_missclassified = (y_test != y_pred).sum()
+print('Misclassified samples count : ',count_missclassified)
+from sklearn.metrics import accuracy_score
+accuracy = accuracy_score(y_test,y_pred)
+print("Accuracy",accuracy)
+```
+
+### 5. Implement Simple and multiple linear regression for the data sets ‘student_score.csv’ and ‘company_data .csv’ respectively
+
+```python
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn import metrics
+import matplotlib.pyplot as plt
+
+student = pd.read_csv('student_scores.csv')
+
+print(student.head())
+print(student.describe())
+print(student.info())
+
+Xax = student.iloc[:, 0]
+Yax = student.iloc[:, 1]
+plt.scatter(Xax, Yax)
+plt.xlabel("No. of hours")
+plt.ylabel("Score")
+plt.title("Student scores")
+plt.show()
+
+x = student.iloc[:, :-1]
+y = student.iloc[:, 1]
+
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
+
+regressor = LinearRegression()
+regressor.fit(x_train, y_train)
+
+print('INTERCEPT = ', regressor.intercept_)
+print('COEFFICIENT = ', regressor.coef_)
+
+y_pred = regressor.predict(x_test)
+
+print("Mean Absolute Error:", metrics.mean_absolute_error(y_test, y_pred))
+print("Mean Squared Error:", metrics.mean_squared_error(y_test, y_pred))
+print("Root Mean Squared Error:", np.sqrt(metrics.mean_squared_error(y_test, y_pred)))
+
+
+for (i, j) in zip(y_test, y_pred):
+    if i != j:
+        print("Actual value:", i, "Predicted value:", j)
+
+print("Number of mislabeled points from test data set:", (y_test != y_pred).sum())
+```
+
+### 6. Create a neural network for the given ‘houseprice.csv’ to predict the weather price of the house is above or below median value or not
+
+```python
+import tensorflow as tf
+import keras
+import pandas
+import sklearn
+import matplotlib
+import pandas as pd
+df = pd.read_csv('housepricedata.csv')
+print(df.head())
+dataset = df.values
+X = dataset[:,0:10]
+Y = dataset[:,10]
+from sklearn import preprocessing
+min_max_scaler = preprocessing.MinMaxScaler()
+X_scale = min_max_scaler.fit_transform(X)
+print(X_scale)
+from sklearn.model_selection import train_test_split
+X_train, X_val_and_test, Y_train, Y_val_and_test = train_test_split(X_scale,Y, test_size=0.3)
+X_val, X_test, Y_val, Y_test = train_test_split(X_val_and_test,Y_val_and_test, test_size=0.5)
+print(X_train.shape, X_val.shape, X_test.shape, Y_train.shape, Y_val.shape,Y_test.shape)
+from keras.models import Sequential
+from keras.layers import Dense
+model = Sequential([Dense(32, activation='relu', input_shape=(10,)), Dense(32,activation='relu'),Dense(1, activation='sigmoid'),])
+model.compile(optimizer='sgd', loss='binary_crossentropy',metrics=['accuracy'])
+hist = model.fit(X_train, Y_train, batch_size=32, epochs=100,validation_data=(X_val, Y_val))
+model.evaluate(X_test, Y_test)[1]
+import matplotlib.pyplot as plt
+plt.plot(hist.history['loss'])
+
+plt.plot(hist.history['val_loss'])
+plt.title('Model loss')
+plt.ylabel('Loss')
+plt.xlabel('Epoch')
+plt.legend(['Train', 'Val'], loc='upper right')
+plt.show()
+```
+
