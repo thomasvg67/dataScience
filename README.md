@@ -1198,27 +1198,33 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk import ngrams
+
+# Download necessary NLTK resources
 nltk.download('punkt')
-nltk.download('punkt_tab')
 nltk.download('stopwords')
 
-
-from nltk.tokenize import sent_tokenize,word_tokenize
+# Sample text
 text1 = 'The data given satisfies the requirement for model generation. This is used in Data Science Lab'
-print('Sentance tokenization : ')
+
+# Sentence tokenization
+print('Sentence tokenization:')
 print(sent_tokenize(text1))
-print("Word tokenization : ")
-print(word_tokenize(text1))
-text = word_tokenize(text1)
-text2 = [word for word in text if word not in stopwords.words('english')]
-print("")
-print("Removing stop words : ")
-print(text2)
-print("")
-print("n grams : ")
-unigrams = ngrams(text2,2)
-for grams in unigrams:
-    print(grams)
+
+# Word tokenization
+words = word_tokenize(text1)
+print("\nWord tokenization:")
+print(words)
+
+# Removing stop words
+filtered_words = [word for word in words if word.lower() not in stopwords.words('english')]
+print("\nRemoving stop words:")
+print(filtered_words)
+
+# Generating bigrams
+print("\nBigrams:")
+for bigram in ngrams(filtered_words, 2):
+    print(bigram)
+
 ```
 
 ### 6. Given dataset contains 200 records and five columns, two of which describe the customer’s annual income and spending score. The latter is a value from 0 to 100. The higher the number, the more this customer has spent with the company
