@@ -1238,33 +1238,36 @@ pattern.
 
 ```python
 import pandas as pd
-customer = pd.read_csv('Mall_Customers.csv')
-customer.head()
 import matplotlib.pyplot as plt
-point = customer.iloc[:,3:5].values
-x = point[:,0]
-y = point[:,1]
-plt.scatter(x,y,s=50,alpha=0.7)
+from sklearn.cluster import KMeans
+
+# Load the dataset
+customer = pd.read_csv('Mall_Customers.csv')
+
+# Extract relevant data
+points = customer.iloc[:, 3:5].values
+x = points[:, 0]
+y = points[:, 1]
+
+# Initial scatter plot
+plt.scatter(x, y, s=50, alpha=0.7)
 plt.xlabel('Annual income (k$)')
 plt.ylabel('Spending Score')
+plt.title('Customer Data')
 plt.show()
 
-from sklearn.cluster import KMeans
-kmeans = KMeans(n_clusters=6,random_state=0)
-kmeans.fit(point)
-predicted_cluster_indexes = kmeans.predict(point)
-plt.scatter(x,y,c=predicted_cluster_indexes,s=50,alpha=0.7,cmap='viridis')
-plt.xlabel('Annual income (k$)')
-plt.ylabel('Spending Score')
-plt.show()
+# Function to perform KMeans clustering and plot results
+def plot_kmeans(n_clusters):
+    kmeans = KMeans(n_clusters=n_clusters, random_state=0)
+    predicted_indexes = kmeans.fit_predict(points)
+    
+    plt.scatter(x, y, c=predicted_indexes, s=50, alpha=0.7, cmap='viridis')
+    plt.xlabel('Annual income (k$)')
+    plt.ylabel('Spending Score')
+    plt.title(f'KMeans Clustering with {n_clusters} Clusters')
+    plt.show()
 
-from sklearn.cluster import KMeans
-kmeans = KMeans(n_clusters=7,random_state=0)
-kmeans.fit(point)
-predicted_cluster_indexes = kmeans.predict(point)
-plt.scatter(x,y,c=predicted_cluster_indexes,s=50,alpha=0.7,cmap='viridis')
-plt.xlabel('Annual income (k$)')
-plt.ylabel('Spending Score')
-plt.title('Cluster centers')
-plt.show()
+# Plot with different number of clusters
+plot_kmeans(6)
+plot_kmeans(7)
 ```
