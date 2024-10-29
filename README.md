@@ -909,38 +909,64 @@ plt.show()
 
 ```python
 import numpy as np
-import matplotlib.pyplot as plt
-import  pandas as pd
-dataset = pd.read_csv("iris.csv")
-x = dataset.iloc[:,:-1].values
-y = dataset.iloc[:,4].values
+import pandas as pd
 from sklearn.model_selection import train_test_split
-x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.20)
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import classification_report, confusion_matrix
+
+# Load the dataset
+dataset = pd.read_csv("iris.csv")
+
+# Split features and target variable
+X = dataset.iloc[:, :-1].values  # All columns except the last
+y = dataset.iloc[:, -1].values     # Last column as target
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42)
+
+# Create and train the KNN classifier
 classifier = KNeighborsClassifier(n_neighbors=5)
-classifier.fit(x_train,y_train)
-y_pred=classifier.predict(x_test)
-from sklearn.metrics import classification_report,confusion_matrix
-print(classification_report(y_test,y_pred))
+classifier.fit(X_train, y_train)
+
+# Make predictions
+y_pred = classifier.predict(X_test)
+
+# Print classification report and confusion matrix
+print("Classification Report:\n", classification_report(y_test, y_pred))
+print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
+
 ```
 
 ### 2. Download another data set suitable for the KNN and implement the KNN algorithm. Take different values for the Test and training data set .Also use different values for k.
 
 ```python
 import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
-dataset = pd.read_csv("Blood Transfusion.csv")
-x = dataset.iloc[:,:-1].values
-y = dataset.iloc[:,4].values
 from sklearn.model_selection import train_test_split
-x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.20)
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import classification_report, confusion_matrix
+
+# Load the dataset
+dataset = pd.read_csv("Blood Transfusion.csv")
+
+# Split features and target variable
+X = dataset.iloc[:, :-1].values
+y = dataset.iloc[:, -1].values  # Assuming the target is in the last column
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42)
+
+# Create and train the classifier
 classifier = KNeighborsClassifier(n_neighbors=5)
-classifier.fit(x_train,y_train)
-y_pred = classifier.predict(x_test)
-from sklearn.metrics import classification_report,confusion_matrix
-print(classification_report(y_test,y_pred))
+classifier.fit(X_train, y_train)
+
+# Make predictions
+y_pred = classifier.predict(X_test)
+
+# Print classification report and confusion matrix
+print("Classification Report:\n", classification_report(y_test, y_pred))
+print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
+
 ```
 
 ### 3. Using iris data set, implement naive bayes classification for different naive Bayes classification algorithms.( (i) gaussian (ii) bernoulli etc)
@@ -953,53 +979,93 @@ I. Gaussian
 
 ```python
 import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
-dataset=pd.read_csv('iris.csv')
-x=dataset.iloc[:,:4].values
-y=dataset['variety'].values
-dataset.head(5)
 from sklearn.model_selection import train_test_split
-x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.3)
 from sklearn.naive_bayes import GaussianNB
-classifier=GaussianNB()
-classifier.fit(x_train,y_train)
-y_pred=classifier.predict(x_test)
-print(y_pred)
-from sklearn.metrics import confusion_matrix
-cm=confusion_matrix(y_test,y_pred)
-print(cm)
-from sklearn.metrics import accuracy_score
-print("Accuracy : ",accuracy_score(y_test,y_pred))
-df=pd.DataFrame({'Real values':y_test,'Predicted values':y_pred})
-print(df)
+from sklearn.metrics import confusion_matrix, accuracy_score
+
+# Load the dataset
+dataset = pd.read_csv('iris.csv')
+
+# Split features and target variable
+X = dataset.iloc[:, :4].values
+y = dataset['variety'].values
+
+# Display the first few rows
+print(dataset.head())
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Create and train the classifier
+classifier = GaussianNB()
+classifier.fit(X_train, y_train)
+
+# Make predictions
+y_pred = classifier.predict(X_test)
+
+# Display predictions
+print("Predictions:", y_pred)
+
+# Compute and print the confusion matrix
+cm = confusion_matrix(y_test, y_pred)
+print("Confusion Matrix:\n", cm)
+
+# Calculate and print the accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
+
+# Create a DataFrame to compare real and predicted values
+results_df = pd.DataFrame({'Real Values': y_test, 'Predicted Values': y_pred})
+print(results_df)
+
 ```
 
 II. Bernoulli
 
 ```python
 import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
-dataset=pd.read_csv('iris.csv')
-x=dataset.iloc[:,:4].values
-y=dataset['variety'].values
-dataset.head(5)
-
+import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
-x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.3)
 from sklearn.naive_bayes import BernoulliNB
-classifier=BernoulliNB()
-classifier.fit(x_train,y_train)
-y_pred=classifier.predict(x_test)
-print(y_pred)
-from sklearn.metrics import confusion_matrix
-cm=confusion_matrix(y_test,y_pred)
-print(cm)
-from sklearn.metrics import accuracy_score
-print("Accuracy : ",accuracy_score(y_test,y_pred))
-df=pd.DataFrame({'Real values':y_test,'Predicted values':y_pred})
-print(df)
+from sklearn.metrics import confusion_matrix, accuracy_score
+
+# Load the dataset
+dataset = pd.read_csv('iris.csv')
+
+# Split features and target variable
+X = dataset.iloc[:, :4].values
+y = dataset['variety'].values
+
+# Display the first few rows
+print(dataset.head())
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Create and train the classifier
+classifier = BernoulliNB()
+classifier.fit(X_train, y_train)
+
+# Make predictions
+y_pred = classifier.predict(X_test)
+
+# Display predictions
+print("Predictions:", y_pred)
+
+# Compute and print the confusion matrix
+cm = confusion_matrix(y_test, y_pred)
+print("Confusion Matrix:\n", cm)
+
+# Calculate and print the accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
+
+# Create a DataFrame to compare real and predicted values
+results_df = pd.DataFrame({'Real Values': y_test, 'Predicted Values': y_pred})
+print(results_df)
+
 ```
 
 ### 4. Use car details CSV file and implement decision tree algorithm
@@ -1010,33 +1076,46 @@ print(df)
 
 ```python
 import pandas as pd
-data = pd.read_csv('car.csv')
-print(data.head())
-col_names = ['buying','maint','doors','persons','lug_boot','safety','class']
-data.columns = col_names
-print(col_names)
-data['class'],class_names = pd.factorize(data['class'])
-data['buying'],_ = pd.factorize(data['buying'])
-data['maint'],_ = pd.factorize(data['maint'])
-data['doors'],_ = pd.factorize(data['doors'])
-data['persons'],_ = pd.factorize(data['persons'])
-data['lug_boot'],_ = pd.factorize(data['lug_boot'])
-data['safety'],_ = pd.factorize(data['safety'])
-print(data.head())
-x = data.iloc[:, :-1]
-y = data.iloc[:, -1]
 from sklearn.model_selection import train_test_split
-x_train, x_test, y_train, y_test = train_test_split(x,y,test_size=0.3)
 from sklearn.tree import DecisionTreeClassifier
-tree1 = DecisionTreeClassifier()
-tree1.fit(x_train,y_train)
-y_pred = tree1.predict(x_test)
-
-count_missclassified = (y_test != y_pred).sum()
-print('Misclassified samples count : ',count_missclassified)
 from sklearn.metrics import accuracy_score
-accuracy = accuracy_score(y_test,y_pred)
-print("Accuracy",accuracy)
+
+# Load the dataset
+data = pd.read_csv('car.csv')
+
+# Assign column names
+col_names = ['buying', 'maint', 'doors', 'persons', 'lug_boot', 'safety', 'class']
+data.columns = col_names
+
+# Factorize categorical columns
+for column in col_names:
+    data[column], _ = pd.factorize(data[column])
+
+# Display the first few rows
+print(data.head())
+
+# Separate features and target variable
+X = data.iloc[:, :-1]
+y = data.iloc[:, -1]
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Create and train the Decision Tree classifier
+tree = DecisionTreeClassifier()
+tree.fit(X_train, y_train)
+
+# Predict on the test set
+y_pred = tree.predict(X_test)
+
+# Calculate and print the number of misclassified samples
+count_misclassified = (y_test != y_pred).sum()
+print('Misclassified samples count:', count_misclassified)
+
+# Calculate and print the accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
+
 ```
 
 ### 5. Implement Simple and multiple linear regression for the data sets ‘student_score.csv’ and ‘company_data .csv’ respectively
@@ -1049,43 +1128,53 @@ from sklearn.linear_model import LinearRegression
 from sklearn import metrics
 import matplotlib.pyplot as plt
 
+# Load the dataset
 student = pd.read_csv('student_scores.csv')
 
+# Display basic information
 print(student.head())
 print(student.describe())
 print(student.info())
 
-Xax = student.iloc[:, 0]
-Yax = student.iloc[:, 1]
-plt.scatter(Xax, Yax)
+# Plotting the data
+plt.scatter(student.iloc[:, 0], student.iloc[:, 1])
 plt.xlabel("No. of hours")
 plt.ylabel("Score")
-plt.title("Student scores")
+plt.title("Student Scores")
 plt.show()
 
-x = student.iloc[:, :-1]
-y = student.iloc[:, 1]
+# Prepare the data for training
+X = student.iloc[:, :-1].values
+y = student.iloc[:, 1].values
 
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
+# Create and train the regressor
 regressor = LinearRegression()
-regressor.fit(x_train, y_train)
+regressor.fit(X_train, y_train)
 
-print('INTERCEPT = ', regressor.intercept_)
-print('COEFFICIENT = ', regressor.coef_)
+# Display the coefficients
+print('Intercept:', regressor.intercept_)
+print('Coefficient:', regressor.coef_)
 
-y_pred = regressor.predict(x_test)
+# Predict on the test set
+y_pred = regressor.predict(X_test)
 
+# Calculate and display error metrics
 print("Mean Absolute Error:", metrics.mean_absolute_error(y_test, y_pred))
 print("Mean Squared Error:", metrics.mean_squared_error(y_test, y_pred))
 print("Root Mean Squared Error:", np.sqrt(metrics.mean_squared_error(y_test, y_pred)))
 
+# Compare actual vs predicted values
+for actual, predicted in zip(y_test, y_pred):
+    if actual != predicted:
+        print(f"Actual value: {actual}, Predicted value: {predicted}")
 
-for (i, j) in zip(y_test, y_pred):
-    if i != j:
-        print("Actual value:", i, "Predicted value:", j)
+# Count the number of mislabeled points
+mislabeled_count = (y_test != y_pred).sum()
+print("Number of mislabeled points from test data set:", mislabeled_count)
 
-print("Number of mislabeled points from test data set:", (y_test != y_pred).sum())
 ```
 
 ### 6. Create a neural network for the given ‘houseprice.csv’ to predict the weather price of the house is above or below median value or not
@@ -1135,32 +1224,47 @@ plt.show()
 import requests
 from bs4 import BeautifulSoup
 
-def getdata(url):
-    r = requests.get(url)
-    return r.content
-htmldata = getdata("https://www.toppr.com/guides/essays/globalization-essay/")
-soup = BeautifulSoup(htmldata,'html.parser')
-data = ''
-pr = len(soup.find_all('p'))
-print("<P> tag",pr)
-for data in soup.find_all('p'):
-    print(data.get_text())
+def get_data(url):
+    response = requests.get(url)
+    return response.content
+
+# Fetch and parse HTML data
+url = "https://www.toppr.com/guides/essays/globalization-essay/"
+html_data = get_data(url)
+soup = BeautifulSoup(html_data, 'html.parser')
+
+# Find and print all paragraph tags
+paragraphs = soup.find_all('p')
+print("<P> tag count:", len(paragraphs))
+
+for paragraph in paragraphs:
+    print(paragraph.get_text())
+
 ```
 ### 2. Write a program to implement a simple web crawler using Python. Display all hyperlinks in the page
 
 ```python
 import requests
 from bs4 import BeautifulSoup
-def getdata(url):
-    r = requests.get(url)
-    return r.content
-htmldata = getdata("http://sjcetpalai.ac.in")
-soup = BeautifulSoup(htmldata,'html.parser')
+
+def get_data(url):
+    response = requests.get(url)
+    return response.content
+
+# Fetch and parse HTML data
+url = "http://sjcetpalai.ac.in"
+html_data = get_data(url)
+soup = BeautifulSoup(html_data, 'html.parser')
+
+# Find and print all links
 links = soup.find_all("a")
-print("Total number of links : ",len(links))
+print("Total number of links:", len(links))
+
 for link in links:
-    if link.get("href") != "":
-        print("link :",link.get("href"),"Text :",link.string)
+    href = link.get("href")
+    if href:  # Check if href is not None or empty
+        print("Link:", href, "Text:", link.get_text())
+
 ```
 
 ### 3. Program for Natural Language Processing which performs n-grams(without using library)
