@@ -1180,11 +1180,15 @@ print(x)
 
 ```python
 from nltk import ngrams
+
+# Define the sentence and n for n-grams
 sentence = 'I reside in India'
 n = 3
-trigrams = ngrams(sentence.split(),n)
-for grams in trigrams:
+
+# Generate trigrams
+for grams in ngrams(sentence.split(), n):
     print(grams)
+
 ```
 
 ### 5. For given text,
