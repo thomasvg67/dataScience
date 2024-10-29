@@ -1166,14 +1166,14 @@ for link in links:
 ### 3. Program for Natural Language Processing which performs n-grams(without using library)
 
 ```python
-def gen_ngrams(text, wordsToCombine):
+def gen_ngrams(text, n):
     words = text.split()
-    output = []
-    for i in range(len(words)-wordsToCombine + 1):
-        output.append(words[i:i + wordsToCombine])
-    return output
-x = gen_ngrams(text='Using the iris data set, implement the KNN algorithm', wordsToCombine=3)
-print(x)
+    return [words[i:i + n] for i in range(len(words) - n + 1)]
+
+# Example usage
+ngrams = gen_ngrams('Using the iris data set, implement the KNN algorithm', 3)
+print(ngrams)
+
 ```
 
 ### 4. Program for Natural Language Processing which performs n-grams(using nltk library)
